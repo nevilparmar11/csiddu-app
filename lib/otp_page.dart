@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:csiddu/theme.dart';
 import 'package:csiddu/otp_service.dart' as otp_service;
+import 'package:csiddu/CrudServices.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({Key key}) : super(key: key);
@@ -13,6 +14,7 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   String text = '';
+  CrudMethods crudObj = new CrudMethods();
 
   void _onKeyboardTap(String value) {
     setState(() {
@@ -119,6 +121,7 @@ class _OtpPageState extends State<OtpPage> {
                             otp_service.resultChecker(int.parse(text));
                         if (verified) {
                           hasEnteredPhone = true;
+                          crudObj.addUserDetails();
                           Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(builder: (context) {
                               return HomeScreen();

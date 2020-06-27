@@ -1,3 +1,4 @@
+import 'package:csiddu/Models/UserModel.dart';
 import 'package:csiddu/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                           maxLines: 1,
                           placeholder: '+91...',
                           onChanged: (value) {
-                            SignUpPage.phoneNo = value;
+                            User.phoneNo = value;
                           },
                         ),
                       ),
@@ -122,8 +123,8 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                         child: RaisedButton(
                           onPressed: () {
                             if (phoneController.text.isNotEmpty) {
-                              print(SignUpPage.phoneNo);
-                              otp_service.sendOtp(SignUpPage.phoneNo);
+                              print(User.phoneNo);
+                              otp_service.sendOtp(User.phoneNo);
                               hasFilledDetails = true;
                               Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) {

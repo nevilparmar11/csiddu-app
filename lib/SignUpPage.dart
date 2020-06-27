@@ -3,9 +3,10 @@ import 'package:csiddu/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:csiddu/Animation/FadeAnimation.dart';
+import 'package:csiddu/Models/UserModel.dart';
 
 class SignUpPage extends StatefulWidget {
-  static String uid, fname, lname, branch, studentId, semester, phoneNo = "#";
+  // static String uid, fname, lname, branch, studentId, semester, phoneNo = "#";
   static String verificationId;
   static String smsOTP;
   static String errorMessage = '';
@@ -113,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: TextFormField(
                                           onSaved: (value) {
                                             setState(() {
-                                              SignUpPage.fname = value;
+                                              User.fname = value;
                                             });
                                           },
                                           decoration: InputDecoration(
@@ -133,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: TextFormField(
                                           onSaved: (value) {
                                             setState(() {
-                                              SignUpPage.lname = value;
+                                              User.lname = value;
                                             });
                                           },
                                           decoration: InputDecoration(
@@ -153,7 +154,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: TextFormField(
                                           onSaved: (value) {
                                             setState(() {
-                                              SignUpPage.studentId = value;
+                                              User.studentId = value;
                                             });
                                           },
                                           decoration: InputDecoration(
@@ -173,15 +174,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: DropDownFormField(
                                           titleText: 'Branch',
                                           hintText: 'Please choose one :',
-                                          value: SignUpPage.branch,
+                                          value: User.branch,
                                           onSaved: (value) {
                                             setState(() {
-                                              SignUpPage.branch = value;
+                                              User.branch = value;
                                             });
                                           },
                                           onChanged: (value) {
                                             setState(() {
-                                              SignUpPage.branch = value;
+                                              User.branch = value;
                                             });
                                           },
                                           dataSource: [
@@ -227,15 +228,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                         child: DropDownFormField(
                                           titleText: 'Semester',
                                           hintText: 'Please choose one :',
-                                          value: SignUpPage.semester,
+                                          value: User.semester,
                                           onSaved: (value) {
                                             setState(() {
-                                              SignUpPage.semester = value;
+                                              User.semester = value;
                                             });
                                           },
                                           onChanged: (value) {
                                             setState(() {
-                                              SignUpPage.semester = value;
+                                              User.semester = value;
                                             });
                                           },
                                           dataSource: [
@@ -309,11 +310,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                     onPressed: () => {
                                       if (validateAndSave())
                                         {
-                                          print(SignUpPage.fname),
-                                          print(SignUpPage.lname),
-                                          print(SignUpPage.branch),
-                                          print(SignUpPage.studentId),
-                                          print(SignUpPage.semester),
+                                          print(User.fname),
+                                          print(User.branch),
+                                          print(User.lname),
+                                          print(User.studentId),
+                                          print(User.semester),
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>

@@ -1,83 +1,76 @@
+import 'package:csiddu/CrudServices.dart';
+import 'package:csiddu/Screens/Controller.dart';
+import 'package:csiddu/components/MyAppBar.dart';
+import 'package:csiddu/components/MyDrawer.dart';
 import 'package:flutter/material.dart';
-import 'package:csiddu/LoginPage.dart';
-import 'package:csiddu/sign_in.dart';
+import 'package:csiddu/theme.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/services.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  CrudMethods _crudMethodsObj = new CrudMethods();
+  int _page = 0;
+  GlobalKey _bottomNavigationKey = GlobalKey();
+  Controller controllerObj = new Controller();
+
+  @override
+  void initState() {
+    super.initState();
+    _crudMethodsObj.getUserDetails();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.blue[100], Colors.blue[400]],
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                  imageUrl,
+        appBar: MyAppBar(),
+        drawer: MyDrawer(),
+        bottomNavigationBar: PreferredSize(
+            child: CurvedNavigationBar(
+              key: _bottomNavigationKey,
+              index: 0,
+              height: 52.0,
+              items: <Widget>[
+                Icon(
+                  Icons.list,
+                  size: 30,
+                  color: Colors.black,
                 ),
-                radius: 60,
-                backgroundColor: Colors.transparent,
-              ),
-              SizedBox(height: 40),
-              Text(
-                'NAME',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
-                name,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Text(
-                'EMAIL',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
-                email,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 40),
-              RaisedButton(
-                onPressed: () {
-                  signOutGoogle();
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return LoginPage();}), ModalRoute.withName('/'));
-                },
-                color: Colors.deepPurple,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Sign Out',
-                    style: TextStyle(fontSize: 25, color: Colors.white),
-                  ),
+                Icon(
+                  Icons.event_available,
+                  size: 30,
+                  color: Colors.black,
                 ),
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40)),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+                Icon(
+                  Icons.history,
+                  size: 30,
+                  color: Colors.black,
+                ),
+                Icon(
+                  Icons.account_circle,
+                  size: 30,
+                  color: Colors.black,
+                ),
+              ],
+              color: Colors.white,
+              buttonBackgroundColor: Colors.white,
+              backgroundColor: Colors.white,
+              animationCurve: Curves.linearToEaseOut,
+              animationDuration: Duration(milliseconds: 400),
+              onTap: (index) {
+                HapticFeedback.vibrate();
+                setState(() {
+                  _page = index;
+                });
+              },
+            ),
+            preferredSize: Size.fromHeight(0)),
+        body: Container(
+          child: controllerObj.selectScreen(_page),
+        ));
   }
 }

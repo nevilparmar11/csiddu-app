@@ -25,7 +25,6 @@ dependencies:
   shared_preferences: 
   dropdown_formfield: 
   simple_animations:
-
   cupertino_icons:
   google_sign_in:
   firebase_core: 
@@ -38,17 +37,18 @@ dependencies:
   expandable: 
   qrscan: 
   csv: 
+  gradient_app_bar:
   progress_dialog: 
   open_file: 
   default_path_provider: 
   cached_network_image: 
-
   numeric_keyboard: 
+  curved_navigation_bar:
   mobx: 
   flutter_mobx: 
   provider:
-
   flutter_otp:
+  flutter_svg:
 
   flutter:
     sdk: flutter
@@ -69,11 +69,33 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/icons/
 
   fonts:
      - family: GoogleSans
        fonts:
          - asset: fonts/GoogleSans-Regular-v1.27.ttf
+
+     - family: QuickSandLight
+       fonts:
+         - asset: fonts/QuickSand-Light.ttf
+         
+     - family: QuickSandMedium
+       fonts:
+         - asset: fonts/QuickSand-Medium.ttf
+
+     - family: QuickSandRegular
+       fonts:
+         - asset: fonts/QuickSand-Regular.ttf
+    
+     - family: QuickSandSemiBold
+       fonts:
+         - asset: fonts/QuickSand-SemiBold.ttf
+
+     - family: QuickSandBold
+       fonts:
+         - asset: fonts/QuickSand-Bold.ttf
+    
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
