@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _crudMethodsObj.getUserDetails();
+    _crudMethodsObj.initializeUserModel();
   }
 
   @override

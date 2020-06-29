@@ -26,7 +26,7 @@ class Controller {
 
       default:
         appBarString = "My Profile";
-        return MyProfile();
+        return ProfilePage();
     }
   }
 }

@@ -31,6 +31,11 @@ class _MyAppBarState extends State<MyAppBar> {
         print("Trying to open website");
         _launchURL();
         break;
+
+      case 'Feedback':
+        print("Feedback was tapped");
+        // _launchURL(feedbackURL);
+        break;
       case 'Exit':
         print("Exiting app");
         SystemNavigator.pop();
@@ -38,9 +43,12 @@ class _MyAppBarState extends State<MyAppBar> {
     }
   }
 
+  List<IconData> icons = [Icons.web, Icons.feedback, Icons.exit_to_app];
+  static int i = 0;
   @override
   Widget build(BuildContext context) {
     return GradientAppBar(
+      elevation: 100,
       centerTitle: true,
       title: Text(
         appBarString,
@@ -55,11 +63,17 @@ class _MyAppBarState extends State<MyAppBar> {
         PopupMenuButton<String>(
           onSelected: handleClick,
           itemBuilder: (BuildContext context) {
-            return {'Visit Our Site', 'Exit'}.map((String choice) {
+            return {'Visit Our Site', 'Feedback', 'Exit'}.map((String choice) {
               return PopupMenuItem<String>(
-                value: choice,
-                child: Text(choice),
-              );
+                  value: choice,
+                  child: ListTile(
+                    title: Text(
+                      choice,
+                      style: TextStyle(
+                          fontFamily: "QuickSandMedium", fontSize: 15),
+                    ),
+                    leading: Icon(icons[i++ % 3]),
+                  ));
             }).toList();
           },
         ),

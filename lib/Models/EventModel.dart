@@ -34,4 +34,38 @@ class Event {
     this.registered = data["registered"];
     this.reference = data.reference;
   }
+
+  @override
+  String toString() {
+    return this.branch +
+        this.eventName +
+        "\n" +
+        this.currentAvailable.toString() +
+        "\n" +
+        this.date +
+        "\n" +
+        this.description +
+        "\n" +
+        this.extraInfo +
+        "\n" +
+        this.imageUrl +
+        "\n" +
+        this.postedOn.toDate().toString() +
+        "\n" +
+        this.semesters.toList().toString() +
+        "\n" +
+        this.timings +
+        "\n" +
+        this.totalSeats.toString() +
+        "\n" +
+        this.totalSeats.toString() +
+        "\n" +
+        this.venue +
+        "\n" +
+        this.whatToBring +
+        "\n" +
+        this.registered.toString() +
+        "\n" +
+        this.reference.toString();
+  }
 }

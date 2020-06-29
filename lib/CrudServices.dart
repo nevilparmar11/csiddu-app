@@ -51,6 +51,30 @@ class CrudMethodsUsers {
     await googleSignIn.signOut();
     print("User Signed Out");
   }
+
+  initializeUserModel() async {
+    print("initializing User Model");
+    if (await isLoggedIn()) {
+      if (user.uid != null) {
+        CollectionReference reference =
+            await Firestore.instance.collection('users');
+
+        DocumentSnapshot dc = await reference.document(user.uid).get();
+        User.fname = dc.data["First Name"];
+        User.lname = dc.data["Last Name"];
+        User.branch = dc.data["Branch"];
+        User.studentId = dc.data["Student ID"];
+        User.phoneNo = dc.data["Phone No."];
+        User.registeredOn = dc.data["Created On"];
+        User.semester = dc.data["Semester"];
+        User.uid = user.uid;
+      } else {
+        print("Something Wrong happened");
+      }
+    } else {
+      print('You need to be logged in first');
+    }
+  }
 }
 
 class CrudMethodsEvents {
