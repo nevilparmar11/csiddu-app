@@ -13,7 +13,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  CrudMethods crudMethodsObj = new CrudMethods();
+  CrudMethodsUsers crudMethodsObj = new CrudMethodsUsers();
 
   ListTile _createListTile(String name, IconData iconname, Function fname) {
     return ListTile(

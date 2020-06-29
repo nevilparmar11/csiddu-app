@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 void main() => runApp(MaterialApp(
       theme: ThemeData(
-          fontFamily: 'QuickSand',
+          fontFamily: 'QuickSandLight',
           primaryColor: MyColors.primaryColor,
           accentColor: MyColors.primaryColorLight),
       debugShowCheckedModeBanner: false,

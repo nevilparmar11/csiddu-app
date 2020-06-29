@@ -14,7 +14,7 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   String text = '';
-  CrudMethods crudObj = new CrudMethods();
+  CrudMethodsUsers crudObj = new CrudMethodsUsers();
 
   void _onKeyboardTap(String value) {
     setState(() {

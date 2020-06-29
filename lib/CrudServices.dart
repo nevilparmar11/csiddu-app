@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csiddu/Models/UserModel.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class CrudMethods {
+class CrudMethodsUsers {
   GoogleSignIn googleSignIn = GoogleSignIn();
   FirebaseUser user;
   Future<bool> isLoggedIn() async {
@@ -51,5 +50,15 @@ class CrudMethods {
   void signOutGoogle() async {
     await googleSignIn.signOut();
     print("User Signed Out");
+  }
+}
+
+class CrudMethodsEvents {
+  Stream<QuerySnapshot> fetchEvents() {
+    print("Fetch method was called");
+    return Firestore.instance
+        .collection('events')
+        .orderBy('postedOn', descending: true)
+        .snapshots();
   }
 }

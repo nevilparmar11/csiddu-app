@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  CrudMethods _crudMethodsObj = new CrudMethods();
+  CrudMethodsUsers _crudMethodsObj = new CrudMethodsUsers();
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
   Controller controllerObj = new Controller();
