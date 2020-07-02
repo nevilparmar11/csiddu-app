@@ -2,8 +2,8 @@ import 'package:csiddu/Constants.dart';
 import 'package:csiddu/Screens/HomeFeedTesting.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:csiddu/Screens/MyProfile.dart';
-import 'package:csiddu/Screens/PastEvents.dart';
+import 'package:csiddu/Screens/MyProfileTesting.dart';
+import 'package:csiddu/Screens/Predictor.dart';
 import 'package:csiddu/Screens/RegisteredEvents.dart';
 
 class Controller {
@@ -20,8 +20,8 @@ class Controller {
         break;
 
       case 2:
-        appBarString = "Past Events";
-        return PastEvents();
+        appBarString = "Marks Predictor";
+        return Predictor();
         break;
 
       default:

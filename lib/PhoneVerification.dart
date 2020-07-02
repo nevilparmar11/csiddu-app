@@ -2,7 +2,6 @@ import 'package:csiddu/Models/UserModel.dart';
 import 'package:csiddu/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:csiddu/SignUpPage.dart';
 import 'package:csiddu/theme.dart';
 import 'package:csiddu/otp_page.dart';
 import 'package:flutter/services.dart';

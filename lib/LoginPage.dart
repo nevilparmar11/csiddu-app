@@ -1,9 +1,11 @@
 import 'package:csiddu/HomeScreen.dart';
 import 'package:csiddu/PhoneVerification.dart';
 import 'package:csiddu/SignUpPage.dart';
+import 'package:csiddu/components/SnackBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:csiddu/sign_in.dart';
+import 'package:csiddu/Services/Helper.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,40 +14,37 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _showLoginButton = false;
+  bool _showSomethingWrong = false;
 
-  @override 
+  @override
   void initState() {
     super.initState();
     signInWithGoogle().whenComplete(() async {
-      if (isSignedIn) {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) {
-            return HomeScreen();
-          }),
-          ModalRoute.withName('/'),
-        );
-      } 
-      else if(firstTime || !hasFilledDetails)
-      {
+      if ((firstTime || !hasFilledDetails || isSpecialCase) && isSignedIn) {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) {
             return SignUpPage();
           }),
           ModalRoute.withName('/'),
         );
-      }
-      else if(!hasEnteredPhone)
-      {
+      } else if (!hasEnteredPhone && isSignedIn) {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) {
             return PhoneVerificationPage();
           }),
           ModalRoute.withName('/'),
         );
-      }
-       else {
+      } else if (isSignedIn) {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) {
+            return HomeScreen();
+          }),
+          ModalRoute.withName('/'),
+        );
+      } else {
         setState(() {
           _showLoginButton = true;
+          _showSomethingWrong = true;
         });
       }
     });
@@ -65,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                 image: AssetImage('assets/images/google_logo.png'),
                 height: 90.0,
               ),
-              Text("Sign In Google",
+              Text("Sign In With Google",
                   style: TextStyle(
                     fontSize: 16,
                     color: Color.fromRGBO(104, 104, 104, 1),
@@ -92,11 +91,13 @@ class _LoginPageState extends State<LoginPage> {
                   return HomeScreen();
                 }), ModalRoute.withName('/'));
               } else {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text(
-                    "You don't have access to this app.",
-                  ),
-                ));
+                showCustomSnackBar(
+                  context,
+                  "Please connect to the Internet and Retry",
+                  "Okay",
+                  3,
+                  () {},
+                );
               }
             });
           },

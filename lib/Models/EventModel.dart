@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Event {
+  String eventId;
   String branch;
   int currentAvailable;
   String date;
@@ -15,9 +16,11 @@ class Event {
   String venue;
   String whatToBring;
   int registered;
+  bool isLive, isOpenForRegisteration, hasEndedRegisteration;
   DocumentReference reference;
 
   Event(DocumentSnapshot data) {
+    this.eventId = data.documentID;
     this.branch = data["branch"];
     this.eventName = data["eventName"];
     this.currentAvailable = data["currentAvailable"];
@@ -33,11 +36,17 @@ class Event {
     this.whatToBring = data["whatToBring"];
     this.registered = data["registered"];
     this.reference = data.reference;
+    this.isLive = data["isLive"];
+    this.isOpenForRegisteration = data["isOpenForRegisteration"];
+    this.hasEndedRegisteration = data["hasEndedRegisteration"];
   }
 
   @override
   String toString() {
-    return this.branch +
+    return this.eventId +
+        "\n" +
+        this.branch +
+        "\n" +
         this.eventName +
         "\n" +
         this.currentAvailable.toString() +
@@ -66,6 +75,15 @@ class Event {
         "\n" +
         this.registered.toString() +
         "\n" +
-        this.reference.toString();
+        this.reference.toString() +
+        "\n" +
+        "isLive = " +
+        this.isLive.toString() +
+        "\n" +
+        "isOpenForRegisteration = " +
+        this.isOpenForRegisteration.toString() +
+        "\n" +
+        "hasEndedRegisteration = " +
+        this.hasEndedRegisteration.toString();
   }
 }

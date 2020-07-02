@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:csiddu/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:csiddu/Models/UserModel.dart';
@@ -63,10 +62,17 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     width: 20,
                   ),
-                  Text(
-                    GUser.name,
-                    style:
-                        TextStyle(fontFamily: "QuickSandRegular", fontSize: 27),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        GUser.name,
+                        style: TextStyle(
+                            fontFamily: "QuickSandRegular", fontSize: 27),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     width: 20,
@@ -85,15 +91,23 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text(
                           "Email:",
                           style: TextStyle(
-                              fontFamily: "QuickSandBold", fontSize: 25),
+                              fontFamily: "QuickSandBold", fontSize: 19),
+                          overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          GUser.emailID,
-                          style: TextStyle(
-                              fontFamily: "QuickSandRegular", fontSize: 19),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 3,
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Text(
+                              GUser.emailID,
+                              style: TextStyle(
+                                  fontFamily: "QuickSandRegular", fontSize: 19),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -138,15 +152,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   Text(
                     "Branch : ",
                     style: TextStyle(fontFamily: "QuickSandBold", fontSize: 22),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    User.branch,
-                    style:
-                        TextStyle(fontFamily: "QuickSandRegular", fontSize: 19),
-                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 20,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(
+                        User.branch,
+                        style: TextStyle(fontFamily: "QuickSandRegular"),
+                        overflow: TextOverflow.ellipsis,
+                        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                      ),
+                    ),
+                  )
                 ],
               ),
               SizedBox(
@@ -158,14 +180,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   Text(
                     "Semester : ",
                     style: TextStyle(fontFamily: "QuickSandBold", fontSize: 22),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    User.semester,
-                    style:
-                        TextStyle(fontFamily: "QuickSandRegular", fontSize: 19),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(
+                        User.semester,
+                        style: TextStyle(
+                            fontFamily: "QuickSandRegular", fontSize: 19),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -178,14 +208,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   Text(
                     "Student ID : ",
                     style: TextStyle(fontFamily: "QuickSandBold", fontSize: 22),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    User.studentId,
-                    style:
-                        TextStyle(fontFamily: "QuickSandRegular", fontSize: 19),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(
+                        User.studentId,
+                        style: TextStyle(
+                            fontFamily: "QuickSandRegular", fontSize: 19),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -198,15 +236,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   Text(
                     "Phone No. : ",
                     style: TextStyle(fontFamily: "QuickSandBold", fontSize: 22),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    "(+91) -" + User.phoneNo,
-                    style:
-                        TextStyle(fontFamily: "QuickSandRegular", fontSize: 19),
-                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(
+                        "(+91) -" + User.phoneNo,
+                        style: TextStyle(
+                            fontFamily: "QuickSandRegular", fontSize: 19),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  )
                 ],
               ),
             ],

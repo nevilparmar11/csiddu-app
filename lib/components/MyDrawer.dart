@@ -3,7 +3,6 @@ import 'package:csiddu/CrudServices.dart';
 import 'package:csiddu/Models/UserModel.dart';
 import 'package:csiddu/theme.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -72,6 +71,10 @@ class _MyDrawerState extends State<MyDrawer> {
     SystemNavigator.pop();
   }
 
+  _handleAboutUs() {
+    print("About us was tapped");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -101,6 +104,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               )),
           _createListTile("Home", Icons.home, _handleHome),
+          _createListTile("About Us", Icons.person_outline, _handleAboutUs),
           _createListTile("Suggestion", Icons.feedback, _handleSuggestion),
           _createListTile("Sign Out", Icons.exit_to_app, _handleSignOut),
           Container(

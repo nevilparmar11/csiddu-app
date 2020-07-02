@@ -1,7 +1,6 @@
 import 'package:csiddu/splash_screen.dart';
 import 'package:csiddu/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:csiddu/splash_screen.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(MaterialApp(

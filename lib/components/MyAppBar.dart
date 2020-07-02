@@ -14,14 +14,14 @@ class MyAppBar extends StatefulWidget with PreferredSizeWidget {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
-  String URL = "http://csiddu.in";
+  String url = "http://csiddu.in";
 
   _launchURL() async {
-    if (await canLaunch(URL)) {
-      await launch(URL);
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
       print('could not launch');
-      throw 'Could not launch $URL';
+      throw 'Could not launch $url';
     }
   }
 
@@ -43,7 +43,7 @@ class _MyAppBarState extends State<MyAppBar> {
     }
   }
 
-  List<IconData> icons = [Icons.web, Icons.feedback, Icons.exit_to_app];
+  List<IconData> icons = [Icons.public, Icons.feedback, Icons.exit_to_app];
   static int i = 0;
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:csiddu/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterButton extends StatelessWidget {
   const RegisterButton({
@@ -31,10 +30,10 @@ class RegisterButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SvgPicture.asset(
-                  "assets/icons/person.svg",
+                Icon(
+                  Icons.person,
+                  size: 25,
                   color: Colors.white,
-                  width: 25,
                 ),
                 SizedBox(width: 10),
                 Text(

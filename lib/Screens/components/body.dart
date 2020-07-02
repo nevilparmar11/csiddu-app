@@ -2,38 +2,58 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:csiddu/Models/EventModel.dart';
 import 'package:csiddu/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:csiddu/Screens/components/item_image.dart';
-import 'package:csiddu/Screens/components/register_button.dart';
+import 'package:csiddu/Screens/components/register_button_testing.dart';
+import 'package:csiddu/CrudServices.dart';
+import 'package:csiddu/Models/UserModel.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   Event event;
-  Body(Event e) {
+  Function registerMe;
+  Body(Event e, Function registerMe) {
     this.event = e;
+    this.registerMe = registerMe;
   }
 
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         CachedNetworkImage(
-          imageUrl: event.imageUrl,
+          imageUrl: widget.event.imageUrl,
           fit: BoxFit.cover,
         ),
         Expanded(
-          child: EventInfo(event),
+          child: EventInfo(widget.event, widget.registerMe),
         ),
       ],
     );
   }
 }
 
-class EventInfo extends StatelessWidget {
+class EventInfo extends StatefulWidget {
   Event event;
-
-  EventInfo(Event e) {
+  Function registerMe;
+  EventInfo(Event e, Function registerMe) {
     this.event = e;
+    this.registerMe = registerMe;
   }
 
+  @override
+  _EventInfoState createState() => _EventInfoState();
+}
+
+class _EventInfoState extends State<EventInfo> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  CrudMethodsUsers crudMethodsUsers = new CrudMethodsUsers();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -50,7 +70,7 @@ class EventInfo extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              shopeName(name: event.eventName),
+              shopeName(name: widget.event.eventName, context: context),
               SizedBox(
                 height: 20,
               ),
@@ -62,7 +82,7 @@ class EventInfo extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                event.description,
+                widget.event.description,
                 style: TextStyle(
                     height: 1.5, fontFamily: "QuickSandRegular", fontSize: 20),
               ),
@@ -77,7 +97,7 @@ class EventInfo extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                event.timings,
+                widget.event.timings,
                 style: TextStyle(
                     height: 1.5, fontFamily: "QuickSandRegular", fontSize: 20),
               ),
@@ -92,7 +112,7 @@ class EventInfo extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "Semesters " + event.semesters.toList().toString(),
+                "Semesters " + widget.event.semesters.toList().toString(),
                 style: TextStyle(
                     height: 1.5, fontFamily: "QuickSandRegular", fontSize: 20),
               ),
@@ -107,7 +127,7 @@ class EventInfo extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                event.whatToBring,
+                widget.event.whatToBring,
                 style: TextStyle(
                     height: 1.5, fontFamily: "QuickSandRegular", fontSize: 20),
               ),
@@ -122,7 +142,7 @@ class EventInfo extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                event.extraInfo,
+                widget.event.extraInfo,
                 style: TextStyle(
                     height: 1.5, fontFamily: "QuickSandRegular", fontSize: 20),
               ),
@@ -130,15 +150,21 @@ class EventInfo extends StatelessWidget {
               SizedBox(height: size.height * 0.05),
               // Free space  10% of total height
               RegisterButton(
-                size: size,
-                press: () {},
+                  size,
+                  widget.registerMe,
+                  User.checkParticipation(
+                    widget.event.eventId,
+                  )),
+
+              SizedBox(
+                height: size.height * 0.03,
               )
             ],
           ),
         ));
   }
 
-  Widget __location(String name) {
+  Widget __location(String name, BuildContext context) {
     return Row(
       children: <Widget>[
         Icon(
@@ -148,28 +174,27 @@ class EventInfo extends StatelessWidget {
         ),
         SizedBox(width: 5),
         Text(
-          event.venue,
+          widget.event.venue,
+          textScaleFactor: MediaQuery.of(context).textScaleFactor,
           style: TextStyle(
-              fontFamily: "QuickSandLight",
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
+              fontFamily: "QuickSandLight", fontWeight: FontWeight.bold),
         )
       ],
     );
   }
 
-  Row shopeName({String name}) {
+  Row shopeName({String name, BuildContext context}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        __location(name),
+        __location(name, context),
         Text(
-          "Total Seats : " + event.totalSeats.toString(),
+          "Total Seats : " + widget.event.totalSeats.toString(),
           textAlign: TextAlign.center,
+          textScaleFactor: MediaQuery.of(context).textScaleFactor,
           style: TextStyle(
               color: Colors.deepOrange,
               fontFamily: "QuickSandMedium",
-              fontSize: 18,
               fontWeight: FontWeight.bold),
         )
       ],

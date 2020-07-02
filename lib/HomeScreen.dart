@@ -3,7 +3,6 @@ import 'package:csiddu/Screens/Controller.dart';
 import 'package:csiddu/components/MyAppBar.dart';
 import 'package:csiddu/components/MyDrawer.dart';
 import 'package:flutter/material.dart';
-import 'package:csiddu/theme.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/services.dart';
 
@@ -37,17 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 52.0,
               items: <Widget>[
                 Icon(
-                  Icons.list,
+                  Icons.home,
                   size: 30,
                   color: Colors.black,
                 ),
                 Icon(
-                  Icons.event_available,
+                  Icons.event_note,
                   size: 30,
                   color: Colors.black,
                 ),
                 Icon(
-                  Icons.history,
+                  Icons.check_circle,
                   size: 30,
                   color: Colors.black,
                 ),

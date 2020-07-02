@@ -12,13 +12,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
 
     if (_seen) {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => LoginPage()));
     } else {
-      prefs.setBool('seen', true);
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => intro_screen()));
     }
