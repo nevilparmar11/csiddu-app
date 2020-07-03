@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:csiddu/screens/components/app_bar.dart';
 import 'package:csiddu/screens/components/body.dart';
 import 'package:csiddu/Screens/components/animated_loader.dart';
+import 'package:csiddu/Models/UserModel.dart';
 
 class DetailsScreen extends StatefulWidget {
   Event event;
@@ -68,6 +69,29 @@ class _DetailsScreenState extends State<DetailsScreen> {
     }
   }
 
+  Widget _getFAB() {
+    if (User.checkParticipation(widget.event.eventId) ||
+        widget.event.eventDone ||
+        !widget.event.isOpenForRegisteration ||
+        widget.event.hasEndedRegisteration ||
+        widget.event.currentAvailable == 0) return Container();
+
+    return FloatingActionButton.extended(
+      onPressed: () {},
+      label: Text(
+        widget.event.currentAvailable.toString(),
+        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+        style: TextStyle(fontFamily: "QuickSandBold"),
+      ),
+      icon: Icon(
+        Icons.event_seat,
+        size: 30,
+      ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0))),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) return showLoader();
@@ -75,20 +99,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       backgroundColor: MyColors.primaryColor,
       appBar: detailsAppBar(context, widget.event.eventName, widget.event.date),
       body: Body(widget.event, _registerMe),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text(
-          widget.event.currentAvailable.toString(),
-          textScaleFactor: MediaQuery.of(context).textScaleFactor,
-          style: TextStyle(fontFamily: "QuickSandBold"),
-        ),
-        icon: Icon(
-          Icons.event_seat,
-          size: 30,
-        ),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0))),
-      ),
+      floatingActionButton: _getFAB(),
     );
   }
 }

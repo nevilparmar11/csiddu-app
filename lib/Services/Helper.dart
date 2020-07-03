@@ -45,7 +45,7 @@ Widget handleNoInternet(BuildContext context) {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: MediaQuery.of(context).size.height / 5,
+            height: MediaQuery.of(context).size.height / 14,
           ),
           EmptyListWidget(
               image: null,

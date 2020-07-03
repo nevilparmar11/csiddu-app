@@ -49,6 +49,23 @@ class _intro_screenState extends State<intro_screen> {
     );
     slides.add(
       Slide(
+        title: "Marks Predictor",
+        styleTitle: TextStyle(
+          color: Colors.white,
+          fontSize: 30.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'QuickSandBold',
+        ),
+        pathImage: "assets/images/im_emptyIcon_2.png",
+        description:
+            "Prepare yourself for the better furture \n Predict your marks in advance \n & \n achieve your Goal",
+        styleDescription: TextStyle(
+            color: Colors.white, fontSize: 20.0, fontFamily: 'QuickSandLight'),
+        backgroundColor: MyColors.primaryColor,
+      ),
+    );
+    slides.add(
+      Slide(
         title: "Terms and Conditions",
         styleTitle: TextStyle(
           color: Colors.white,

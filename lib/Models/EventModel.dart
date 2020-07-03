@@ -16,7 +16,7 @@ class Event {
   String venue;
   String whatToBring;
   int registered;
-  bool isLive, isOpenForRegisteration, hasEndedRegisteration;
+  bool isLive, isOpenForRegisteration, hasEndedRegisteration, eventDone;
   DocumentReference reference;
 
   Event(DocumentSnapshot data) {
@@ -39,6 +39,7 @@ class Event {
     this.isLive = data["isLive"];
     this.isOpenForRegisteration = data["isOpenForRegisteration"];
     this.hasEndedRegisteration = data["hasEndedRegisteration"];
+    this.eventDone = data["eventDone"];
   }
 
   @override
@@ -84,6 +85,9 @@ class Event {
         this.isOpenForRegisteration.toString() +
         "\n" +
         "hasEndedRegisteration = " +
-        this.hasEndedRegisteration.toString();
+        this.hasEndedRegisteration.toString() +
+        "\n" +
+        "eventDone = " +
+        this.eventDone.toString();
   }
 }

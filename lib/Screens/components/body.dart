@@ -150,11 +150,13 @@ class _EventInfoState extends State<EventInfo> {
               SizedBox(height: size.height * 0.05),
               // Free space  10% of total height
               RegisterButton(
-                  size,
-                  widget.registerMe,
-                  User.checkParticipation(
-                    widget.event.eventId,
-                  )),
+                size,
+                widget.registerMe,
+                User.checkParticipation(
+                  widget.event.eventId,
+                ),
+                widget.event,
+              ),
 
               SizedBox(
                 height: size.height * 0.03,

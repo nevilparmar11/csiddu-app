@@ -1,15 +1,18 @@
 import 'package:csiddu/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:csiddu/Models/EventModel.dart';
 
 class RegisterButton extends StatefulWidget {
   Size size;
   Function press;
   bool participation;
+  Event event;
 
-  RegisterButton(Size size, Function func, bool ok) {
+  RegisterButton(Size size, Function func, bool ok, Event e) {
     this.size = size;
     this.press = func;
     this.participation = ok;
+    this.event = e;
   }
 
   @override
@@ -17,6 +20,28 @@ class RegisterButton extends StatefulWidget {
 }
 
 class _RegisterButtonState extends State<RegisterButton> {
+  String _handleTextForButton() {
+    int count = widget.event.currentAvailable;
+    if (widget.event.isOpenForRegisteration) {
+      if (widget.event.eventDone) {
+        return "Not Accepting Registrations";
+      } else if (widget.event.hasEndedRegisteration)
+        return "Temporarily Closed";
+      else {
+        if (widget.participation) {
+          return "Registered";
+        } else {
+          if (count == 0) {
+            return "Seats are Full";
+          } else {
+            return "Count Me In";
+          }
+        }
+      }
+    }
+    return "Registration Will Start Soon";
+  }
+
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
@@ -25,7 +50,10 @@ class _RegisterButtonState extends State<RegisterButton> {
       child: RaisedButton(
           disabledColor: Colors.grey[500],
           shape: StadiumBorder(),
-          onPressed: widget.participation
+          onPressed: widget.participation ||
+                  !widget.event.isOpenForRegisteration ||
+                  widget.event.eventDone ||
+                  widget.event.currentAvailable == 0
               ? null
               : () async {
                   await widget.press();
@@ -43,7 +71,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                 width: 13,
               ),
               Text(
-                widget.participation ? "Registered" : "Count Me In",
+                _handleTextForButton(),
                 style: TextStyle(
                   fontFamily: "QuickSandLight",
                   fontSize: 30,
