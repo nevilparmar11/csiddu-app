@@ -21,7 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  intro_slider:
+  intro_slider: ^2.3.1
   shared_preferences: 
   dropdown_formfield: 
   simple_animations:
