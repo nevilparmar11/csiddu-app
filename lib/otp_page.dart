@@ -87,7 +87,7 @@ class _OtpPageState extends State<OtpPage> {
                         Container(
                             margin: const EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
-                                'Enter 6 digits verification code sent to your number',
+                                'Enter 4 digits verification code sent to your number',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 26,

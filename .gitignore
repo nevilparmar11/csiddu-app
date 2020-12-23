@@ -48,3 +48,6 @@ app.*.map.json
 #ignore key stores and passwords
 /keys
 /android/key.properties
+
+#ignore googel services folder
+/Google services files
